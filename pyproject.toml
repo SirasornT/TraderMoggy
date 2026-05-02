@@ -1,0 +1,50 @@
+[project]
+name = "tradermoggy"
+version = "0.1.0"
+description = "Personal stock research assistant — surfaces social buzz and produces analyst-style research memos"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.49",
+    "typer>=0.15",
+    "rich>=13",
+    "praw>=7",
+    "httpx>=0.27",
+    "yfinance>=0.2",
+    "pandas-ta>=0.3",
+    "pydantic-settings>=2",
+    "python-dotenv>=1",
+]
+
+[project.scripts]
+moggy = "moggy.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["moggy"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+    "pytest-mock>=3",
+    "respx>=0.21",
+    "ruff>=0.4",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["moggy"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = [
+    "integration: marks tests as integration tests (deselect with '-m \"not integration\"')",
+]

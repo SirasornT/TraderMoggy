@@ -25,7 +25,7 @@ env/
 .env.*.local
 
 # Generated output
-output/
+/output/
 
 # Testing
 .pytest_cache/
